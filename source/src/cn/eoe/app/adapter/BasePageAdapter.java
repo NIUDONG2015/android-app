@@ -18,10 +18,8 @@ import cn.eoe.app.view.NewsFragment;
 import cn.eoe.app.view.WikiFragment;
 
 public class BasePageAdapter extends FragmentStatePagerAdapter {
-
 	public ArrayList<Fragment> mFragments = new ArrayList<Fragment>();;
 	public List<CategorysEntity> tabs = new ArrayList<CategorysEntity>();
-
 	private Activity mActivity;
 
 	public BasePageAdapter(FragmentActivity activity) {
@@ -45,12 +43,13 @@ public class BasePageAdapter extends FragmentStatePagerAdapter {
 			}
 		}
 	}
+
 	/**
 	 * 只加载listview不包含 tabs
+	 * 
 	 * @param listObject
 	 */
-	public void addFragment( List<Object> listObject) {
-
+	public void addFragment(List<Object> listObject) {
 		for (int i = 0; i < listObject.size(); i++) {
 			Object object = listObject.get(i);
 			if (object instanceof NewsCategoryListEntity) {

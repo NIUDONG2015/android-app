@@ -70,7 +70,6 @@ public class TopDao extends BaseDao {
 			}
 			Collections.addAll(topCategorys, newsCategorys, blogsCategorys,
 					wikiCategorys);
-
 			return topCategorys;
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block

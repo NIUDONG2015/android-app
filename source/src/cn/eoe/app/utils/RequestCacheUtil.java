@@ -15,6 +15,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Environment;
+import android.util.Log;
 import cn.eoe.app.config.Configs;
 import cn.eoe.app.config.Constants;
 import cn.eoe.app.db.DBHelper;
@@ -79,6 +80,7 @@ public class RequestCacheUtil {
 	private static String getCacheRequest(Context context, String requestUrl,
 			String requestPath, String source_type, String content_type,
 			DBHelper dbHelper, boolean useCache) {
+		Log.e(TAG, "requestUrl:" + requestUrl);
 		// TODO Auto-generated method stub
 		String result = "";
 		if (useCache) {
@@ -111,7 +113,7 @@ public class RequestCacheUtil {
 		String result = "";
 		try {
 			result = HttpUtils.getByHttpClient(context, requestUrl);
-			if (result.equals(null) && result.equals("")) {
+			if (result.equals("")) {
 				return result;
 			}
 			// 更新数据库
@@ -126,7 +128,6 @@ public class RequestCacheUtil {
 	}
 
 	private static void saveFileByRequestPath(String requestPath, String result) {
-		// TODO Auto-generated method stub
 		deleteFileFromLocal(requestPath);
 		saveFileForLocal(requestPath, result);
 	}

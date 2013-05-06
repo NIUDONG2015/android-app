@@ -12,15 +12,11 @@ public class HttpErrorFragment extends Fragment {
 	public HttpErrorFragment() {
 	}
 
-
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		View view=inflater.inflate(R.layout.http_error_fragment, null);
+		View view = inflater.inflate(R.layout.http_error_fragment, null);
 		return view;
 	}
-	
-	
 
 }

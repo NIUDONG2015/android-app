@@ -142,7 +142,6 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
 
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 		try {
 			DBHelper db = DBHelper.getInstance(this);
@@ -169,7 +168,6 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
 	}
 
 	private void initControl() {
-
 		imm = (InputMethodManager) getApplicationContext().getSystemService(
 				Context.INPUT_METHOD_SERVICE);
 		loadLayout = (LinearLayout) findViewById(R.id.view_loading);
@@ -328,7 +326,7 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
 					UserLoginUidActivity.SharedName, Context.MODE_PRIVATE);
 			// [start] 修复上一个bug
 			String Key = share.getString(UserLoginUidActivity.KEY, "");
-			if (Key!="" && !Key.contains(":")) {
+			if (Key != "" && !Key.contains(":")) {
 				Editor edit = share.edit();
 				edit.putString(UserLoginUidActivity.KEY, "");
 				edit.commit();
@@ -440,13 +438,13 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
 			if (dX < 8 && dY > 8 && !mIsTitleHide && !down) {
 				Animation anim = AnimationUtils.loadAnimation(
 						MainActivity.this, R.anim.push_top_in);
-//				anim.setFillAfter(true);
+				// anim.setFillAfter(true);
 				anim.setAnimationListener(MainActivity.this);
 				title.startAnimation(anim);
 			} else if (dX < 8 && dY > 8 && mIsTitleHide && down) {
 				Animation anim = AnimationUtils.loadAnimation(
 						MainActivity.this, R.anim.push_top_out);
-//				anim.setFillAfter(true);
+				// anim.setFillAfter(true);
 				anim.setAnimationListener(MainActivity.this);
 				title.startAnimation(anim);
 			} else {
@@ -487,7 +485,6 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
 
 		@Override
 		protected void onPreExecute() {
-			// TODO Auto-generated method stub
 			imgLeft.setVisibility(View.GONE);
 			imgRight.setVisibility(View.GONE);
 			loadLayout.setVisibility(View.VISIBLE);
@@ -507,16 +504,7 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
 			if (dao instanceof TopDao) {
 				mTag = 0;
 				if ((categoryList = topDao.mapperJson(mUseCache)) != null) {
-
 					categorys = topDao.getCategorys();
-					map.put("tabs", categorys);
-					map.put("list", categoryList);
-				}
-			} else if (dao instanceof BlogsDao) {
-				mTag = 3;
-				if ((responseData = blogsDao.mapperJson(mUseCache)) != null) {
-					categoryList = (List) responseData.getList();
-					categorys = responseData.getCategorys();
 					map.put("tabs", categorys);
 					map.put("list", categoryList);
 				}
@@ -536,6 +524,14 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
 					map.put("tabs", categorys);
 					map.put("list", categoryList);
 				}
+			} else if (dao instanceof BlogsDao) {
+				mTag = 3;
+				if ((responseData = blogsDao.mapperJson(mUseCache)) != null) {
+					categoryList = (List) responseData.getList();
+					categorys = responseData.getCategorys();
+					map.put("tabs", categorys);
+					map.put("list", categoryList);
+				}
 			} else {
 				return null;
 			}
@@ -544,7 +540,6 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
 
 		@Override
 		protected void onPostExecute(Map<String, Object> result) {
-			// TODO Auto-generated method stub
 			super.onPostExecute(result);
 			isShowPopupWindows = true;
 			mBasePageAdapter.Clear();
@@ -564,7 +559,6 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
 			mBasePageAdapter.notifyDataSetChanged();
 			mViewPager.setCurrentItem(0);
 			mIndicator.notifyDataSetChanged();
-
 		}
 	}
 
@@ -577,28 +571,25 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
 	class MyPageChangeListener implements OnPageChangeListener {
 		@Override
 		public void onPageScrollStateChanged(int arg0) {
-			// TODO Auto-generated method stub
 		}
 
 		@Override
 		public void onPageScrolled(int arg0, float arg1, int arg2) {
-			// TODO Auto-generated method stub
 		}
 
 		@Override
 		public void onPageSelected(int arg0) {
-			// TODO Auto-generated method stub
 			if (arg0 == 0) {
 				getSlidingMenu().setTouchModeAbove(
 						SlidingMenu.TOUCHMODE_FULLSCREEN);
-				imgLeft.setVisibility(8);
+				imgLeft.setVisibility(View.GONE);
 			} else if (arg0 == mBasePageAdapter.mFragments.size() - 1) {
-				imgRight.setVisibility(8);
+				imgRight.setVisibility(View.GONE);
 				getSlidingMenu()
 						.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
 			} else {
-				imgRight.setVisibility(0);
-				imgLeft.setVisibility(0);
+				imgRight.setVisibility(View.VISIBLE);
+				imgLeft.setVisibility(View.VISIBLE);
 				getSlidingMenu()
 						.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
 			}
@@ -606,30 +597,23 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
 	}
 
 	class tvOffAnimListener implements AnimationListener {
-
 		@Override
 		public void onAnimationEnd(Animation animation) {
-			// TODO Auto-generated method stub
 			defaultFinish();
 		}
 
 		@Override
 		public void onAnimationRepeat(Animation animation) {
-			// TODO Auto-generated method stub
-
 		}
 
 		@Override
 		public void onAnimationStart(Animation animation) {
-			// TODO Auto-generated method stub
-
 		}
 
 	}
 
 	@Override
 	public void onAnimationEnd(Animation animation) {
-		// TODO Auto-generated method stub
 		if (mIsTitleHide) {
 			title.setVisibility(View.GONE);
 		} else {
@@ -640,13 +624,10 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
 
 	@Override
 	public void onAnimationRepeat(Animation animation) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void onAnimationStart(Animation animation) {
-		// TODO Auto-generated method stub
 		title.setVisibility(View.VISIBLE);
 		if (mIsTitleHide) {
 			FrameLayout.LayoutParams lp = (LayoutParams) mlinear_listview

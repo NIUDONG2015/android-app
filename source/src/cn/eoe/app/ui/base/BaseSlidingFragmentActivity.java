@@ -12,7 +12,6 @@ import android.view.ViewGroup.LayoutParams;
 public class BaseSlidingFragmentActivity extends BaseFragmentActivity implements SlidingActivityBase {
 
 	private SlidingActivityHelper mHelper;
-
 	/* (non-Javadoc)
 	 * @see android.support.v4.app.FragmentActivity#onCreate(android.os.Bundle)
 	 */
